@@ -1,2 +1,54 @@
-# AIGC检测平台
-AIGC content risk detection platform based on Flask
+# AIGC Risk Detector
+
+AIGC内容风险检测平台（大学生项目）
+
+## 项目简介
+
+本项目基于 Flask 开发，旨在对 AIGC（AI Generated Content）内容进行基础风险检测。
+
+系统能够对用户输入内容中的潜在高风险词汇进行识别，并生成简单风险提示，用于模拟 AIGC 内容审核与版权风险预警场景。
+
+---
+
+## 功能特点
+
+- AIGC文本输入
+- 风险关键词检测
+- 风险结果提示
+- Web可视化界面
+- Flask后端实现
+- GitHub项目部署
+
+---
+
+## 技术栈
+
+- Python
+- Flask
+- HTML
+- CSS
+- GitHub
+
+---
+
+## 项目预览
+
+### 首页界面
+
+- 输入AIGC生成内容
+- 点击开始检测
+- 返回风险分析结果
+
+---
+
+## 项目意义
+
+随着生成式AI快速发展，AIGC内容的版权、模仿、侵权等风险问题逐渐受到关注。
+
+本项目尝试从大学生开发实践角度，探索AIGC内容风险识别平台的基础实现逻辑。
+
+---
+
+## 作者
+
+Chasel29
