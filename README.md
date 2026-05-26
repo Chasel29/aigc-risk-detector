@@ -1,2 +1,2 @@
-# AIGC检测平台
+# aigc-risk-detector
 AIGC content risk detection platform based on Flask
