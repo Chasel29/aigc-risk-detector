@@ -11,15 +11,44 @@ def home():
 
         text = request.form['content']
 
-        risk_words = ["模仿", "复刻", "类似", "照搬"]
+        high_risk_words = ["复刻", "照搬", "完全一致"]
 
-        for word in risk_words:
+        medium_risk_words = ["模仿", "类似", "参考"]
+
+        result = ""
+
+        for word in high_risk_words:
             if word in text:
-                result = "检测到潜在风险词：" + word
+                result = f"""
+                🔴 风险等级：高风险
+
+                检测到高风险词汇：{word}
+
+                该内容可能涉及直接复制、
+                风格侵权或版权风险。
+                """
                 break
 
         if result == "":
-            result = "未检测到明显风险"
+
+            for word in medium_risk_words:
+                if word in text:
+                    result = f"""
+                    🟠 风险等级：中风险
+
+                    检测到敏感表达：{word}
+
+                    建议避免直接模仿品牌、
+                    作者或商业内容风格。
+                    """
+                    break
+
+        if result == "":
+            result = """
+            🟢 风险等级：低风险
+
+            未检测到明显风险内容。
+            """
 
     return render_template('index.html', result=result)
 
