@@ -1,54 +1,148 @@
-# AIGC Risk Detector
+# AIGC Copyrightability Assessment Platform
 
-AIGC内容风险检测平台（大学生项目）
-
-## 项目简介
-
-本项目基于 Flask 开发，旨在对 AIGC（AI Generated Content）内容进行基础风险检测。
-
-系统能够对用户输入内容中的潜在高风险词汇进行识别，并生成简单风险提示，用于模拟 AIGC 内容审核与版权风险预警场景。
+Human-AI Co-Creation Research System
+面向生成式AI时代的人机协同创作版权认定研究平台
 
 ---
 
-## 功能特点
+## Project Overview
 
-- AIGC文本输入
-- 风险关键词检测
-- 风险结果提示
-- Web可视化界面
-- Flask后端实现
-- GitHub项目部署
+This project is an experimental AI governance and copyrightability analysis platform built around the emerging legal challenges of AIGC (AI Generated Content).
+
+The platform focuses on:
+
+- Human-AI collaborative creation
+- Copyrightability assessment of AIGC works
+- Prompt creativity analysis
+- AI dependency evaluation
+- Simulated judicial tendency analysis
+- International copyright trends
+
+Rather than simply detecting AI-generated content, the system attempts to construct a research-oriented framework for analyzing whether AI-assisted works may possess copyrightability under different legal perspectives.
 
 ---
 
-## 技术栈
+## Research Background
+
+With the rapid development of generative AI technologies such as ChatGPT, Midjourney, Stable Diffusion, Claude, and Gemini, traditional copyright frameworks are facing unprecedented challenges.
+
+Core questions include:
+
+- Can AI-generated works obtain copyright protection?
+- What level of human participation is legally significant?
+- Does Prompt engineering possess originality?
+- How should courts evaluate Human-AI collaborative creation?
+
+This project explores these issues through a visualized and interactive research platform.
+
+---
+
+## Core Analysis Framework
+
+The platform is built upon a Four-Dimensional Copyrightability Framework:
+
+### 1. Human Participation
+
+Evaluates:
+
+- Multi-round modification
+- Human restructuring
+- Creative intervention
+- Manual refinement
+- Narrative design
+
+### 2. Originality
+
+Evaluates:
+
+- Creative expression
+- World-building
+- Narrative structure
+- Visual aesthetics
+- Artistic language
+
+### 3. AI Dependency
+
+Evaluates:
+
+- One-click generation
+- Fully automated generation
+- Lack of human modification
+- Direct AI output usage
+
+### 4. Expression Complexity
+
+Evaluates:
+
+- Structural complexity
+- Character relationships
+- Multi-layer narrative systems
+- Spatial and visual design
+
+---
+
+## Innovative Features
+
+### Prompt Creativity Analysis
+
+The platform attempts to evaluate the creative value embedded in Prompt construction and multi-round interaction processes.
+
+### Simulated Judicial Tendency
+
+Based on analysis results, the system simulates potential judicial tendencies regarding copyright recognition.
+
+### International Copyright Trend Comparison
+
+The platform references:
+
+- Chinese copyright theory
+- U.S. Copyright Office tendencies
+- EU Human-AI collaborative approaches
+- Emerging Japanese AIGC governance discussions
+
+### Research-Oriented Product Design
+
+Unlike ordinary AI detectors, this platform emphasizes:
+
+- Legal research logic
+- AI governance perspective
+- Human-AI co-creation analysis
+- Experimental copyrightability modeling
+
+---
+
+## Technical Stack
+
+### Backend
 
 - Python
 - Flask
-- HTML
-- CSS
-- GitHub
+
+### Frontend
+
+- HTML5
+- CSS3
+- Responsive SaaS-style UI
+
+### Analysis Logic
+
+- Semantic keyword recognition
+- Rule-based intelligent scoring
+- Simulated legal reasoning framework
 
 ---
 
-## 项目预览
+## Project Structure
 
-### 首页界面
-
-- 输入AIGC生成内容
-- 点击开始检测
-- 返回风险分析结果
-
----
-
-## 项目意义
-
-随着生成式AI快速发展，AIGC内容的版权、模仿、侵权等风险问题逐渐受到关注。
-
-本项目尝试从大学生开发实践角度，探索AIGC内容风险识别平台的基础实现逻辑。
-
----
-
-## 作者
-
-Chasel29
+```bash
+AIGC检测平台/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   └── index.html
+│
+└── static/
+    └── style.css
