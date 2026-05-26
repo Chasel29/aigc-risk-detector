@@ -1,48 +1,27 @@
 <!DOCTYPE html>
-<html lang="zh">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <title>AIGC检测平台</title>
-
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+    <title>AIGC内容风险检测平台</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-
 <body>
-
     <div class="container">
-
-        <h1>AIGC内容风险检测平台</h1>
-
-        <form method="POST">
-
-            <textarea
-            name="content"
-            rows="10"
-            placeholder="请输入AIGC生成内容"></textarea>
-
-            <br><br>
-
-            <button type="submit">开始检测</button>
-
-        </form>
-
-        {% if result %}
-
-        <div class="result">
-
-            <h2>检测结果</h2>
-
-            <p>{{ result }}</p>
-
+        <div class="logo">
+            AIGC Risk Detector
         </div>
-
+        <h1>AIGC内容风险检测平台</h1>
+        <form method="post">
+            <textarea name="content" placeholder="请输入需要检测的内容...">{{ content }}</textarea>
+            <br>
+            <button type="submit">检测</button>
+        </form>
+        {% if result %}
+        <div class="result">{{ result }}</div>
         {% endif %}
-
+        <div class="footer">
+            Powered by Flask · Built by Chasel29
+        </div>
     </div>
-
 </body>
-
 </html>
