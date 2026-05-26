@@ -1,27 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
+
 <head>
     <meta charset="UTF-8">
-    <title>AIGC内容风险检测平台</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIGC作品可版权性认定平台</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
+
+    <div class="bg-blur blur1"></div>
+    <div class="bg-blur blur2"></div>
+
     <div class="container">
-        <div class="logo">
-            AIGC Risk Detector
+
+        <div class="navbar">
+
+            <div class="logo">
+                AIGC Copyrightability Lab
+            </div>
+
+            <div class="nav-right">
+                AI Governance Research System
+            </div>
+
         </div>
-        <h1>AIGC内容风险检测平台</h1>
-        <form method="post">
-            <textarea name="content" placeholder="请输入需要检测的内容...">{{ content }}</textarea>
-            <br>
-            <button type="submit">检测</button>
-        </form>
+
+        <div class="hero">
+
+            <div class="tag">
+                AI Governance · Intellectual Property · AIGC Research
+            </div>
+
+            <h1>
+                AIGC作品可版权性认定平台
+            </h1>
+
+            <p class="subtitle">
+                面向生成式AI时代的人机协同创作分析平台，
+                基于“人类参与度—独创性—AI依赖程度—表达复杂度”四维框架，
+                对AIGC作品进行可版权性辅助认定与法律趋势分析。
+            </p>
+
+        </div>
+
+        <div class="main-panel">
+
+            <form method="POST">
+
+                <textarea
+                name="content"
+                placeholder="请输入Prompt、创作过程或AIGC生成内容，用于分析作品可版权性...">{{ content }}</textarea>
+
+                <button type="submit">
+                    开始智能分析
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="framework-section">
+
+            <div class="framework-title">
+                四维版权认定框架
+            </div>
+
+            <div class="framework-grid">
+
+                <div class="framework-card">
+                    <h3>人类参与度</h3>
+                    <p>
+                        分析用户是否进行了多轮Prompt设计、
+                        人工修改、结构优化与创意干预。
+                    </p>
+                </div>
+
+                <div class="framework-card">
+                    <h3>独创性</h3>
+                    <p>
+                        评估内容是否具备个性表达、
+                        创新结构与非模板化特征。
+                    </p>
+                </div>
+
+                <div class="framework-card">
+                    <h3>AI依赖程度</h3>
+                    <p>
+                        判断作品是否高度依赖生成式AI，
+                        以及人工创造性投入占比。
+                    </p>
+                </div>
+
+                <div class="framework-card">
+                    <h3>表达复杂度</h3>
+                    <p>
+                        评估内容在结构、美学、逻辑与表达层面的复杂程度。
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="innovation-section">
+
+            <div class="innovation-title">
+                创新研究模块
+            </div>
+
+            <div class="innovation-grid">
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">⚖️</div>
+                    <h3>模拟司法认定</h3>
+                    <p>
+                        基于人类参与度与独创性分析，
+                        模拟AIGC作品在不同法律体系下的认定倾向。
+                    </p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">🧠</div>
+                    <h3>Prompt创造性分析</h3>
+                    <p>
+                        分析Prompt结构、创意表达与多轮交互过程，
+                        评估Prompt本身的创造性价值。
+                    </p>
+                </div>
+
+                <div class="innovation-card">
+                    <div class="innovation-icon">🌍</div>
+                    <h3>国际版权趋势</h3>
+                    <p>
+                        对比中国、美国与欧盟对AIGC作品权利归属的不同认定逻辑。
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
         {% if result %}
-        <div class="result">{{ result }}</div>
-        {% endif %}
-        <div class="footer">
-            Powered by Flask · Built by Chasel29
+
+        <div class="dashboard">
+
+            <div class="card big-card">
+                <h3>可版权性评分</h3>
+                <p>{{ score }}<span>/100</span></p>
+            </div>
+
+            <div class="card">
+                <h3>认定结果</h3>
+                <p>{{ risk_level }}</p>
+            </div>
+
+            <div class="card">
+                <h3>系统状态</h3>
+                <p>AI Ready</p>
+            </div>
+
         </div>
+
+        <div class="result-panel">
+
+            <div class="result-header">
+                <div class="result-dot"></div>
+                <h2>AIGC可版权性分析报告</h2>
+            </div>
+
+            <div class="result-content">
+                <p>{{ result }}</p>
+            </div>
+
+        </div>
+
+        {% endif %}
+
+        <div class="section-divider"></div>
+
+        <div class="research-banner">
+
+            <div class="research-content">
+
+                <div class="research-label">
+                    AI Governance Research
+                </div>
+
+                <h2>
+                    人-AI协同创作时代的知识产权认定探索
+                </h2>
+
+                <p>
+                    本平台聚焦生成式AI背景下的作品认定问题，
+                    尝试构建面向AIGC时代的可版权性分析框架。
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+
+            <p>
+                AIGC Copyrightability Assessment Platform · Human-AI Co-Creation Research System
+            </p>
+
+        </div>
+
     </div>
+
 </body>
+
 </html>
