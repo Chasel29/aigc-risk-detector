@@ -34,15 +34,19 @@
             <div class="tag">
                 AI Governance · Intellectual Property · AIGC Research
             </div>
+            <div class="stats-highlight">
+                <span>●</span>
+                面向AIGC知识产权认知研究与治理分析的实验性平台
+            </div>
 
-            <h1>
+            <h1 class="hero-title">
                 AIGC作品可版权性认定平台
             </h1>
 
             <p class="subtitle">
-                面向生成式AI时代的人机协同创作分析平台，
-                基于“人类参与度—独创性—AI依赖程度—表达复杂度”四维框架，
-                对AIGC作品进行可版权性辅助认定与法律趋势分析。
+                聚焦生成式人工智能时代的人机协同创作与知识产权治理问题，
+                基于“技术认知—版权认知—治理态度”分析视角，
+                对AIGC内容生成中的版权归属、风险识别与治理路径进行辅助研究与可视化展示。
             </p>
 
         </div>
@@ -55,11 +59,71 @@
                 name="content"
                 placeholder="请输入Prompt、创作过程或AIGC生成内容，用于分析作品可版权性...">{{ content }}</textarea>
 
-                <button type="submit">
-                    开始智能分析
-                </button>
+                <div class="button-wrapper">
+                    <button type="submit" class="analyze-btn">
+                        开始研究分析
+                    </button>
+                </div>
 
             </form>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="research-overview">
+
+            <div class="section-title">
+                AIGC知识产权研究概览
+            </div>
+
+            <div class="section-desc">
+                本平台围绕AIGC生成内容的可版权性认知差异、版权风险识别与治理路径展开研究，
+                通过案例展示、风险场景分析与数据可视化等方式，探索人工智能时代知识产权治理的新型研究路径。
+            </div>
+
+            <div class="dashboard">
+
+                <div class="card">
+                    <h3>案例研究</h3>
+                    <p>48+</p>
+                </div>
+
+                <div class="card">
+                    <h3>调查样本</h3>
+                    <p>600+</p>
+                </div>
+
+                <div class="card">
+                    <h3>研究维度</h3>
+                    <p>4项</p>
+                </div>
+
+            </div>
+
+            <div class="metric-row">
+
+                <div class="metric-box">
+                    <div class="metric-number">632+</div>
+                    <div class="metric-label">有效问卷</div>
+                </div>
+
+                <div class="metric-box">
+                    <div class="metric-number">52</div>
+                    <div class="metric-label">典型案例</div>
+                </div>
+
+                <div class="metric-box">
+                    <div class="metric-number">26</div>
+                    <div class="metric-label">深度访谈</div>
+                </div>
+
+                <div class="metric-box">
+                    <div class="metric-number">4</div>
+                    <div class="metric-label">研究维度</div>
+                </div>
+
+            </div>
 
         </div>
 
@@ -71,36 +135,72 @@
                 四维版权认定框架
             </div>
 
-            <div class="framework-grid">
+            <div class="dimension-grid">
 
-                <div class="framework-card">
-                    <h3>人类参与度</h3>
+                <div class="dimension-card">
+                    <div class="dimension-icon">👤</div>
+                    <div class="dimension-title">Human Input</div>
+                    <div class="dimension-subtitle">人工参与程度</div>
+                </div>
+
+                <div class="dimension-card">
+                    <div class="dimension-icon">✦</div>
+                    <div class="dimension-title">Originality</div>
+                    <div class="dimension-subtitle">独创性表达</div>
+                </div>
+
+                <div class="dimension-card">
+                    <div class="dimension-icon">◎</div>
+                    <div class="dimension-title">AI Dependency</div>
+                    <div class="dimension-subtitle">AI依赖程度</div>
+                </div>
+
+                <div class="dimension-card">
+                    <div class="dimension-icon">◈</div>
+                    <div class="dimension-title">Expression</div>
+                    <div class="dimension-subtitle">表达复杂度</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="case-section">
+
+            <div class="section-title">
+                AIGC典型案例观察
+            </div>
+
+            <div class="section-desc">
+                基于国内外生成式人工智能版权争议案例，对不同类型AIGC创作行为中的权属认定、平台责任与风险特征进行分类研究。
+            </div>
+
+            <div class="case-grid">
+
+                <div class="case-card">
+                    <div class="case-tag">版权认定</div>
+                    <div class="case-title">AI绘画作品权属争议</div>
                     <p>
-                        分析用户是否进行了多轮Prompt设计、
-                        人工修改、结构优化与创意干预。
+                        研究AI绘画生成过程中人类Prompt设计、人工修改与独创性表达之间的关系。
                     </p>
                 </div>
 
-                <div class="framework-card">
-                    <h3>独创性</h3>
+                <div class="case-card">
+                    <div class="case-tag">平台治理</div>
+                    <div class="case-title">AIGC内容传播风险</div>
                     <p>
-                        评估内容是否具备个性表达、
-                        创新结构与非模板化特征。
+                        分析平台在AIGC内容审核、标识机制与版权风险提示中的治理责任。
                     </p>
                 </div>
 
-                <div class="framework-card">
-                    <h3>AI依赖程度</h3>
+                <div class="case-card wide-card">
+                    <div class="case-tag">国际比较</div>
+                    <div class="case-title">中美AIGC认定差异</div>
                     <p>
-                        判断作品是否高度依赖生成式AI，
-                        以及人工创造性投入占比。
-                    </p>
-                </div>
-
-                <div class="framework-card">
-                    <h3>表达复杂度</h3>
-                    <p>
-                        评估内容在结构、美学、逻辑与表达层面的复杂程度。
+                        对比中国、美国与欧盟在AIGC作品可版权性、权利归属与平台责任方面的认定逻辑，
+                        分析不同治理体系下人工智能内容治理路径的差异。
                     </p>
                 </div>
 
@@ -112,8 +212,12 @@
 
         <div class="innovation-section">
 
-            <div class="innovation-title">
+            <div class="section-title">
                 创新研究模块
+            </div>
+
+            <div class="section-desc">
+                结合AIGC知识产权治理中的热点问题，探索案例分析、Prompt创造性研究与国际治理比较等方向。
             </div>
 
             <div class="innovation-grid">
@@ -173,7 +277,7 @@
 
             <div class="result-header">
                 <div class="result-dot"></div>
-                <h2>AIGC可版权性分析报告</h2>
+                <h2>AIGC知识产权辅助分析报告</h2>
             </div>
 
             <div class="result-content">
@@ -191,16 +295,17 @@
             <div class="research-content">
 
                 <div class="research-label">
-                    AI Governance Research
+                    TRG Research Perspective
                 </div>
 
-                <h2>
-                    人-AI协同创作时代的知识产权认定探索
+                <h2 class="trg-title">
+                    Technology · Rights · Governance
                 </h2>
 
                 <p>
-                    本平台聚焦生成式AI背景下的作品认定问题，
-                    尝试构建面向AIGC时代的可版权性分析框架。
+                    基于TRG（Technology–Rights–Governance）研究视角，
+                    从技术理解、版权认知与治理态度等维度，
+                    探索人工智能时代知识产权治理中的认知结构变化与协同治理逻辑。
                 </p>
 
             </div>
@@ -210,7 +315,7 @@
         <div class="footer">
 
             <p>
-                AIGC Copyrightability Assessment Platform · Human-AI Co-Creation Research System
+                AIGC Governance & Copyrightability Research Platform · Human-AI Co-Creation Study System
             </p>
 
         </div>
