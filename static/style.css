@@ -34,22 +34,24 @@ body {
 }
 
 .container {
-    width: 88%;
-    max-width: 1280px;
+    width: 78%;
+    max-width: 1220px;
     margin: 0 auto;
-    padding: 56px 0 100px;
+    padding: 38px 0 80px;
+    position: relative;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 100px;
-    padding: 18px 24px;
+    margin-bottom: 48px;
+    padding: 14px 20px;
     border-radius: 22px;
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.035);
     border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(24px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.22);
 }
 
 .nav-right {
@@ -62,8 +64,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 90px;
+    margin-bottom: 60px;
+    position: relative;
 }
 
 .tag {
@@ -92,42 +96,44 @@ body {
 }
 
 h1 {
-    margin: 0 auto 34px;
-    font-size: 104px;
-    font-weight: 900;
+    margin: 0 auto 22px;
+    font-size: 72px;
+    font-weight: 950;
     line-height: 1.02;
-    letter-spacing: -6px;
-    max-width: 1200px;
+    letter-spacing: -4px;
+    max-width: 980px;
     text-align: center;
     color: #ffffff;
-    text-shadow: 0 0 40px rgba(255,255,255,0.08);
+    text-shadow:
+        0 0 40px rgba(96,165,250,0.16),
+        0 0 80px rgba(167,139,250,0.08);
 }
 
 .subtitle {
     color: rgba(255,255,255,0.68);
-    font-size: 21px;
-    line-height: 1.9;
-    max-width: 920px;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 720px;
     text-align: center;
-    margin: 0 auto 70px;
+    margin: 0 auto 36px;
 }
 
 textarea {
     width: 100%;
-    height: 320px;
-    padding: 34px;
-    border-radius: 32px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
+    height: 210px;
+    padding: 26px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.035);
     backdrop-filter: blur(18px);
     color: #f5f5f5;
-    font-size: 17px;
-    line-height: 1.9;
+    font-size: 15px;
+    line-height: 1.8;
     resize: none;
     outline: none;
     transition: 0.3s ease;
     box-sizing: border-box;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.22);
 }
 
 textarea::placeholder {
@@ -141,18 +147,40 @@ textarea:focus {
 
 button {
     display: block;
-    margin: 42px auto 0;
-    padding: 20px 56px;
+    margin: 28px auto 0;
+    padding: 16px 42px;
     border: none;
-    border-radius: 20px;
+    border-radius: 16px;
     background: linear-gradient(135deg, #2563eb, #7c3aed);
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 800;
     letter-spacing: 0.5px;
     cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 14px 40px rgba(37,99,235,0.28);
+    transition: 0.35s ease;
+    box-shadow: 0 16px 34px rgba(37,99,235,0.24);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.28),
+        transparent
+    );
+    transition: 0.8s ease;
+}
+
+button:hover::before {
+    left: 120%;
 }
 
 button:hover {
@@ -163,24 +191,24 @@ button:hover {
 .dashboard {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 80px;
+    gap: 16px;
+    margin-top: 42px;
 }
 
 .card {
     background: linear-gradient(
         180deg,
         rgba(255,255,255,0.06),
-        rgba(255,255,255,0.03)
+        rgba(255,255,255,0.025)
     );
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 30px;
-    padding: 38px 34px;
+    border-radius: 22px;
+    padding: 24px;
     transition: 0.35s ease;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
 }
 
 .card:hover {
@@ -190,7 +218,13 @@ button:hover {
 }
 
 .card::before {
-    display: none;
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(96,165,250,0.14), transparent 70%);
 }
 
 .big-card p {
@@ -213,19 +247,19 @@ button:hover {
 
 .card p {
     font-size: 34px;
-    font-weight: 800;
+    font-weight: 900;
     margin: 0;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .result-panel {
-    margin-top: 80px;
-    background: rgba(255,255,255,0.05);
+    margin-top: 52px;
+    background: rgba(255,255,255,0.045);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 32px;
-    padding: 52px;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    border-radius: 26px;
+    padding: 34px;
+    backdrop-filter: blur(24px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.24);
 }
 
 .result-header {
@@ -244,10 +278,10 @@ button:hover {
 }
 
 .result-content {
-    line-height: 2.1;
-    color: rgba(255,255,255,0.82);
+    line-height: 2;
+    color: rgba(255,255,255,0.84);
     white-space: pre-line;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .footer {
@@ -284,26 +318,28 @@ button:hover {
 
 .case-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    margin-top: 50px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin-top: 30px;
 }
 
 .case-card {
     background: linear-gradient(
         180deg,
         rgba(255,255,255,0.05),
-        rgba(255,255,255,0.03)
+        rgba(255,255,255,0.025)
     );
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 28px;
-    padding: 34px;
+    border-radius: 22px;
+    padding: 24px;
     transition: 0.35s ease;
-    backdrop-filter: blur(18px);
-    min-height: 260px;
+    backdrop-filter: blur(20px);
+    min-height: 180px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
 }
 
 .case-card:hover {
@@ -312,9 +348,10 @@ button:hover {
 }
 
 .case-title {
-    font-size: 22px;
-    font-weight: 800;
+    font-size: 20px;
+    font-weight: 850;
     margin-bottom: 14px;
+    line-height: 1.4;
 }
 
 .case-tag {
@@ -328,11 +365,14 @@ button:hover {
 }
 
 .section-title {
-    font-size: 52px;
-    font-weight: 900;
-    margin-bottom: 22px;
+    font-size: 48px;
+    font-weight: 950;
+    margin-bottom: 16px;
     letter-spacing: -3px;
     text-align: center;
+    background: linear-gradient(90deg, #ffffff, #93c5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .section-desc {
@@ -343,30 +383,35 @@ button:hover {
     text-align: center;
 }
 
-/* ---- Custom metrics and dimensions blocks ---- */
 .metric-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
-    margin: 80px 0;
+    gap: 14px;
+    margin: 42px 0;
 }
 
 .metric-box {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.035);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 28px;
-    padding: 34px;
+    border-radius: 20px;
+    padding: 22px;
     text-align: center;
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(20px);
+    transition: 0.35s ease;
+}
+
+.metric-box:hover {
+    transform: translateY(-5px);
+    border-color: rgba(96,165,250,0.35);
 }
 
 .metric-number {
-    font-size: 54px;
-    font-weight: 900;
+    font-size: 38px;
+    font-weight: 950;
     background: linear-gradient(90deg, #60a5fa, #a78bfa);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .metric-label {
@@ -378,18 +423,20 @@ button:hover {
 .dimension-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 50px;
+    gap: 16px;
+    margin-top: 30px;
 }
 
 .dimension-card {
-    background: rgba(255,255,255,0.04);
+    background: rgba(255,255,255,0.035);
     border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 28px;
-    padding: 40px 24px;
+    border-radius: 22px;
+    padding: 28px 18px;
     text-align: center;
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(20px);
     transition: 0.35s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .dimension-card:hover {
@@ -398,14 +445,28 @@ button:hover {
 }
 
 .dimension-icon {
-    font-size: 42px;
-    margin-bottom: 18px;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        rgba(96,165,250,0.22),
+        rgba(167,139,250,0.18)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 10px 30px rgba(96,165,250,0.12);
 }
 
 .dimension-title {
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 850;
     margin-bottom: 10px;
+    line-height: 1.5;
 }
 
 .dimension-subtitle {
@@ -413,6 +474,46 @@ button:hover {
     color: rgba(255,255,255,0.5);
     letter-spacing: 1px;
     text-transform: uppercase;
+}
+
+/* ---- UI optimization additions ---- */
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(96,165,250,0.14), transparent 70%);
+    top: -120px;
+    z-index: -1;
+    filter: blur(80px);
+}
+
+.result-content strong {
+    color: #ffffff;
+}
+
+.case-card::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(96,165,250,0.12), transparent 70%);
+}
+
+.card,
+.case-card,
+.dimension-card,
+.metric-box {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.card:hover,
+.case-card:hover,
+.dimension-card:hover,
+.metric-box:hover {
+    box-shadow: 0 18px 40px rgba(0,0,0,0.24);
 }
 
 @media (max-width: 900px) {
@@ -423,9 +524,9 @@ button:hover {
     }
 
     h1 {
-        font-size: 58px;
-        line-height: 1.08;
-        letter-spacing: -3px;
+        font-size: 54px;
+        line-height: 1.06;
+        letter-spacing: -2px;
     }
 
     .dashboard {
@@ -443,7 +544,16 @@ button:hover {
     }
 
     textarea {
-        height: 220px;
-        padding: 24px;
+        height: 190px;
+        padding: 22px;
     }
+}
+
+::selection {
+    background: rgba(96,165,250,0.3);
+    color: white;
+}
+
+html {
+    scroll-behavior: smooth;
 }

@@ -15,34 +15,42 @@ def home():
 
     # 平台演示数据（用于研究展示与可视化）
     platform_stats = {
-        "cases": 52,
+        "cases": 58,
         "surveys": 632,
         "interviews": 26,
+        "frameworks": 4,
         "update_time": datetime.now().strftime("%Y-%m-%d")
     }
 
     # 典型案例展示
     case_library = [
         {
-            "title": "AI绘画著作权争议案例",
+            "title": "Midjourney版权争议案例",
             "type": "AI图像生成",
             "risk": "中风险",
             "issue": "作品独创性认定",
             "view": "需结合人工修改程度综合判断"
         },
         {
-            "title": "AI辅助文案创作案例",
+            "title": "ChatGPT辅助写作案例",
             "type": "文本生成",
             "risk": "低风险",
-            "issue": "AI辅助创作边界",
-            "view": "人类创作主导性较明显"
+            "issue": "人类创作主导性",
+            "view": "AI主要承担辅助生成功能"
         },
         {
-            "title": "仿风格AI生成内容案例",
+            "title": "AI仿风格生成案例",
             "type": "风格模仿生成",
             "risk": "高风险",
             "issue": "潜在侵权与商业传播风险",
-            "view": "需加强平台审核与版权提示"
+            "view": "需加强平台审核与版权风险提示"
+        },
+        {
+            "title": "AI音乐生成案例",
+            "type": "AIGC音频生成",
+            "risk": "中风险",
+            "issue": "训练数据合规性",
+            "view": "需进一步明确平台责任边界"
         }
     ]
 
@@ -51,7 +59,7 @@ def home():
         {
             "level": "低风险",
             "scene": "AI辅助润色与资料整理",
-            "description": "人工创作占主导，AI主要用于辅助优化"
+            "description": "人工创作占主导，AI主要承担辅助优化功能"
         },
         {
             "level": "中风险",
@@ -60,8 +68,8 @@ def home():
         },
         {
             "level": "高风险",
-            "scene": "AI批量生成商业化内容",
-            "description": "自动生成程度较高，商业传播风险较明显"
+            "scene": "AI批量商业化内容生成",
+            "description": "自动生成程度较高，存在较明显版权风险"
         }
     ]
 
@@ -70,7 +78,14 @@ def home():
         "groups": ["普通用户", "内容创作者", "法学相关群体", "AIGC高频使用者"],
         "copyright_support": [48, 67, 72, 61],
         "governance_labels": ["平台审核", "AI标识", "法律规制", "行业标准"],
-        "governance_values": [32, 24, 28, 16]
+        "governance_values": [32, 24, 28, 16],
+        "dimension_labels": [
+            "Human Participation",
+            "Originality",
+            "AI Dependency",
+            "Expression Complexity"
+        ],
+        "dimension_values": [82, 74, 61, 69]
     }
 
     if request.method == 'POST':
@@ -79,18 +94,29 @@ def home():
 
         # AIGC认知研究辅助分析模块
 
-        creation_mode = "人机协同创作"
+        creation_mode = "Human–AI Collaborative Creation"
         prompt_creativity = "中等"
         judicial_tendency = "存在争议"
 
         # 四维版权认定模型
+
+        # 初始化匹配变量（避免未赋值报错）
+        human_match = 0
+        originality_match = 0
+        ai_match = 0
+        complexity_match = 0
 
         human_keywords = [
             "修改", "设计", "原创", "优化",
             "多轮", "调整", "重构", "人工",
             "反复修改", "草图", "构思", "策划",
             "导演", "拍摄", "后期", "编排",
-            "创作", "打磨", "润色", "训练"
+            "创作", "打磨", "润色", "训练",
+            "photoshop", "editing", "manual",
+            "post-edit", "post-editing",
+            "multi-round", "prompt engineering",
+            "human creator", "redraw",
+            "creative direction"
         ]
 
         originality_keywords = [
@@ -98,7 +124,11 @@ def home():
             "创意", "原创表达", "世界观",
             "角色设定", "叙事", "镜头语言",
             "情绪表达", "视觉风格", "美学",
-            "故事结构", "艺术表达"
+            "故事结构", "艺术表达",
+            "original", "cinematic",
+            "architecture composition",
+            "worldbuilding", "visual storytelling",
+            "concept art", "creative"
         ]
 
         ai_keywords = [
@@ -106,7 +136,9 @@ def home():
             "AIGC", "自动生成", "Stable Diffusion",
             "Claude", "Gemini", "文心一言",
             "一键生成", "直接生成", "AI完成",
-            "无需修改", "自动创作"
+            "无需修改", "自动创作",
+            "fully generated", "automatic",
+            "one click", "without editing"
         ]
 
         complexity_keywords = [
@@ -114,14 +146,16 @@ def home():
             "交互", "世界观", "品牌体系",
             "角色设定", "叙事", "镜头语言",
             "多层", "复杂", "系统化",
-            "人物关系", "时间线", "空间设计"
+            "人物关系", "时间线", "空间设计",
+            "architecture", "cinematic lighting",
+            "visual storytelling", "scene design",
+            "composition", "conceptual"
         ]
 
-        human_score = 0
-        originality_score = 0
-        ai_score = 0
-        complexity_score = 0
+        # 基础分（避免大部分案例出现极低分）
+        base_score = 55
 
+        # 创作特征缓存
         detected_dimensions = []
 
         # 智能语义识别函数
@@ -143,10 +177,10 @@ def home():
         ai_match, ai_detected = semantic_match(ai_keywords, text)
         complexity_match, complexity_detected = semantic_match(complexity_keywords, text)
 
-        human_score = human_match * 12
-        originality_score = originality_match * 12
-        ai_score = ai_match * 15
-        complexity_score = complexity_match * 10
+        human_score = min(100, 25 + human_match * 10)
+        originality_score = min(100, 20 + originality_match * 10)
+        ai_score = min(100, ai_match * 12)
+        complexity_score = min(100, 15 + complexity_match * 8)
 
         detected_dimensions.extend(human_detected)
         detected_dimensions.extend(originality_detected)
@@ -157,7 +191,11 @@ def home():
         high_prompt_keywords = [
             "赛博朋克", "水墨", "未来", "电影感",
             "蒸汽朋克", "废土", "东方幻想",
-            "赛博神话", "意识流", "超现实"
+            "赛博神话", "意识流", "超现实",
+            "cyberpunk", "cinematic", "original architecture",
+            "multi-round", "prompt engineering",
+            "post-editing", "photoshop",
+            "worldbuilding", "visual storytelling"
         ]
 
         high_prompt_match, _ = semantic_match(high_prompt_keywords, text)
@@ -170,7 +208,7 @@ def home():
             prompt_creativity = "基础"
 
         if "多轮" in text or "人工修改" in text or "重构" in text:
-            creation_mode = "深度人机协同创作"
+            creation_mode = "Deep Human–AI Collaborative Creation"
 
         # 研究性司法倾向模拟（仅用于案例研究展示）
         if human_score >= 50 and originality_score >= 40 and complexity_score >= 30:
@@ -182,31 +220,47 @@ def home():
         else:
             judicial_tendency = "存在法律争议"
 
-        # 可版权性综合计算
+        # 可版权性综合计算（研究型辅助分析）
         copyright_score = (
-            human_score * 0.35 +
-            originality_score * 0.35 +
-            complexity_score * 0.2 -
-            ai_score * 0.1
+            base_score +
+            human_score * 0.22 +
+            originality_score * 0.22 +
+            complexity_score * 0.16 -
+            ai_score * 0.08
         )
 
-        copyright_score = int(max(0, min(copyright_score, 100)))
+        # 人工深度参与额外加分
+        deep_human_keywords = [
+            "photoshop", "multi-round", "人工修改",
+            "post-editing", "prompt engineering",
+            "原创", "重构"
+        ]
+
+        bonus = 0
+
+        for word in deep_human_keywords:
+            if word.lower() in text.lower():
+                bonus += 4
+
+        copyright_score += bonus
+
+        copyright_score = int(max(15, min(copyright_score, 95)))
 
         # 研究参考等级判断
-        if copyright_score >= 70:
-            copyright_level = "低版权争议倾向"
+        if copyright_score >= 80:
+            copyright_level = "高独创性协同创作"
             icon = "🟢"
-            legal_opinion = "该内容体现出较明显的人类创造性投入，具备较强的人类主导创作特征。"
+            legal_opinion = "该内容体现出较强的人类创造性投入与表达控制能力，具有较明显的人机协同创作特征。"
 
-        elif copyright_score >= 40:
-            copyright_level = "中版权争议倾向"
+        elif copyright_score >= 60:
+            copyright_level = "中等独创性表达"
             icon = "🟠"
-            legal_opinion = "该内容存在一定原创表达，但AI参与程度较高，相关权利归属仍存在一定争议。"
+            legal_opinion = "该内容存在一定原创表达与人工参与，但AI生成成分相对较高，相关权利认定仍存在争议。"
 
         else:
-            copyright_level = "高版权争议倾向"
+            copyright_level = "高度AI生成倾向"
             icon = "🔴"
-            legal_opinion = "该内容主要依赖AIGC生成，人类独创性表达相对有限。"
+            legal_opinion = "该内容对AIGC生成依赖程度较高，人类独创性表达相对有限。"
 
         # 维度等级分析
         def level_text(score):
@@ -223,10 +277,10 @@ def home():
         complexity_level = level_text(complexity_score)
 
         analysis_dimensions = {
-            "human": min(human_score, 100),
-            "originality": min(originality_score, 100),
-            "ai_dependency": min(ai_score, 100),
-            "complexity": min(complexity_score, 100)
+            "human": max(20, min(human_score, 100)),
+            "originality": max(20, min(originality_score, 100)),
+            "ai_dependency": max(15, min(ai_score, 100)),
+            "complexity": max(20, min(complexity_score, 100))
         }
 
         if detected_dimensions:
@@ -258,47 +312,53 @@ def home():
         ]
 
         result = f"""
-{icon} AIGC知识产权研究辅助分析结果
+{icon} AIGC Copyrightability Research Analysis
 
 ━━━━━━━━━━━━━━━
-研究参考等级
+Research Risk Level
 ━━━━━━━━━━━━━━━
 
 {copyright_level}
 综合分析指数：{copyright_score}/100
 
 ━━━━━━━━━━━━━━━
-四维研究分析框架
+TRG Four-Dimensional Framework
 ━━━━━━━━━━━━━━━
 
-人类参与度：{human_level}
-独创性表达：{originality_level}
-AI依赖程度：{ai_level}
-表达复杂度：{complexity_level}
+Human Participation Index：{human_level}
+Original Expression Index：{originality_level}
+AI Dependency Index：{ai_level}
+Expression Complexity：{complexity_level}
+
+Human Participation Score：{analysis_dimensions['human']}/100
+Originality Score：{analysis_dimensions['originality']}/100
+AI Dependency Score：{analysis_dimensions['ai_dependency']}/100
+Complexity Score：{analysis_dimensions['complexity']}/100
 
 ━━━━━━━━━━━━━━━
-创作行为分析
+Creative Process Analysis
 ━━━━━━━━━━━━━━━
+Research Confidence Level：Experimental Research Reference
 
 创作模式：{creation_mode}
 Prompt创造性：{prompt_creativity}
 司法认知倾向：{judicial_tendency}
 
 ━━━━━━━━━━━━━━━
-关键创作特征
+Detected Creative Features
 ━━━━━━━━━━━━━━━
 
 {detected_text}
 
 ━━━━━━━━━━━━━━━
-相似案例参考
+Related Case References
 ━━━━━━━━━━━━━━━
 
 - {matched_cases[0]}
 - {matched_cases[-1]}
 
 ━━━━━━━━━━━━━━━
-治理建议参考
+Governance Suggestions
 ━━━━━━━━━━━━━━━
 
 - {governance_suggestions[0]}
@@ -306,27 +366,28 @@ Prompt创造性：{prompt_creativity}
 - {governance_suggestions[2]}
 
 ━━━━━━━━━━━━━━━
-研究参考意见
+Research Observation
 ━━━━━━━━━━━━━━━
 
 {legal_opinion}
 
 ━━━━━━━━━━━━━━━
-国际治理趋势参考
+Global Governance Trends
 ━━━━━━━━━━━━━━━
 
-中国：强调“人类智力投入”与独创性表达
-美国：倾向不保护纯AI自动生成内容
-欧盟：强调创作者控制力与人机协同过程
-日本：逐步探索AIGC时代的新型版权规则
+China: Emphasizes human intellectual contribution and originality
+United States: Tends not to protect fully AI-generated content
+European Union: Focuses on creator control and collaborative process
+Japan: Exploring emerging copyright rules for the AIGC era
 
 ━━━━━━━━━━━━━━━
-平台说明
+Platform Statement
 ━━━━━━━━━━━━━━━
 
-本平台为“AIGC知识产权研究与辅助分析平台”演示模块，
-主要用于案例研究、认知分析与可视化展示。
-平台结果仅作为研究参考，不构成正式法律认定意见。
+This platform is an experimental research and visualization module
+for AIGC copyrightability analysis and governance studies.
+All analysis results are for academic research reference only
+and do not constitute formal legal opinions.
         """
 
     return render_template(
